@@ -9,15 +9,19 @@
         <div class="header">
           <span class="title">CHECKLIST</span>
         </div>
-        <div class="fields" id="fields">
+          <div class="fields" id="fields">
           <input type="text" name="todo" placeholder ="To do list."  />
           {{#todos}}
-            <li>{{.}} <button type="Completed">Completed</button></li>
+            <li>{{.}} <button name="completed">Completed</button></li>
           {{/todos}}
         </div>
         <div class="footer">
           <button type="submit">Submit</button>
-
+          <h1>Completed</h1>
+          <form action="/" method="post" id="completed">
+            {{#completed}}
+            <li>{{.}}</li>
+            {{/completed}}
         </div>
       </form>
     </div>

@@ -23,7 +23,6 @@ app.post("/", function (req, res) {
   listOfTodos.push(newTodoObject);
   res.redirect('/');
 });
-
 app.post('/mark-complete/:id', function(req, res) {
   let idOfTheTodoThatImMarkingComplete = parseInt(req.params.id);
   let completeTodo = listOfTodos.find(function (todo) {
@@ -31,27 +30,6 @@ app.post('/mark-complete/:id', function(req, res) {
   });
   completeTodo.complete = true
   res.redirect('/');
-
-});
-app.post('/', function(req, res) {
-  var schema = {
-    'name': {
-      notEmpty: true,
-      isLength: {
-        options: [{ min: 2 }],
-        errorMessage: ' must be longer than 2 characters'
-      },
-      errorMessage: 'Invalid Entry'
-    }
-  };
-  req.assert(schema);
-  req.getValidationResult().then(function(result) {
-    if (result.isEmpty()) {
-      res.render('answers', { answers: req.body });
-      } else {
-      res.render('todo', { errors: result.array() });
-    }
-  });
 });
 app.listen(3000, function() {
   console.log('Server is up.');
